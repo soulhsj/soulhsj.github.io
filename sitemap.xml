@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://soulhsj.github.io/project/2022/07/11/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://soulhsj.github.io/2022/07/11/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2022-07-11</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://soulhsj.github.io/project/2022/07/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>https://soulhsj.github.io/2022/07/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2022-07-11</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://soulhsj.github.io/project/2022/07/11/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E6%B5%8B%E8%AF%952/</loc>
+    <loc>https://soulhsj.github.io/2022/07/11/%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E6%B5%8B%E8%AF%952/</loc>
     
     <lastmod>2022-07-11</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://soulhsj.github.io/project/tags/index.html</loc>
+    <loc>https://soulhsj.github.io/tags/index.html</loc>
     
     <lastmod>2022-07-11</lastmod>
     
@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://soulhsj.github.io/project/about/index.html</loc>
+    <loc>https://soulhsj.github.io/about/index.html</loc>
     
     <lastmod>2022-07-11</lastmod>
     
@@ -48,7 +48,7 @@
   
 
   <url>
-    <loc>https://soulhsj.github.io/project</loc>
+    <loc>https://soulhsj.github.io/</loc>
     <lastmod>2022-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -56,14 +56,14 @@
 
   
   <url>
-    <loc>https://soulhsj.github.io/project/tags/Testing/</loc>
+    <loc>https://soulhsj.github.io/tags/Testing/</loc>
     <lastmod>2022-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://soulhsj.github.io/project/tags/Another-Tag/</loc>
+    <loc>https://soulhsj.github.io/tags/Another-Tag/</loc>
     <lastmod>2022-07-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
