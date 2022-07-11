@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/07/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>使用hexo+GitHub搭建了自己的个人博客<br>记录生活、收藏资源、积累经验…..<br><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-]]></content>
-      <tags>
-        <tag>生活</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>影视资源网站收藏</title>
     <url>/2022/07/11/test-2/</url>
     <content><![CDATA[<p><span class="github-emoji"><span>🎥</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3a5.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span> 在线看 </p>
@@ -110,9 +101,18 @@
         <category>资源</category>
       </categories>
       <tags>
-        <tag>番剧</tag>
-        <tag>BT</tag>
         <tag>在线观影</tag>
+        <tag>BT</tag>
+        <tag>番剧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/07/10/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>使用hexo+GitHub搭建了自己的个人博客<br>记录生活、收藏资源、积累经验…..<br><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>🌞</span><img data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f31e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
       </tags>
   </entry>
 </search>
