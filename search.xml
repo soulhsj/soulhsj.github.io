@@ -493,4 +493,465 @@
         <tag>shell</tag>
       </tags>
   </entry>
+  <entry>
+    <title>《Linux命令行与shell脚本编程大全》- 更多的bash shell命令</title>
+    <url>/2022/08/27/%E6%9B%B4%E5%A4%9A%E7%9A%84bash-shell%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="更多的-bash-shell-命令"><a href="#更多的-bash-shell-命令" class="headerlink" title="更多的 bash shell 命令"></a>更多的 bash shell 命令</h1><h2 id="一、检测程序"><a href="#一、检测程序" class="headerlink" title="一、检测程序"></a>一、检测程序</h2><h3 id="1-探查进程"><a href="#1-探查进程" class="headerlink" title="1. 探查进程"></a>1. 探查进程</h3><p>ps 命令默认显示运行在当前终端中属于当前用户的进程</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ps</span></span><br><span class="line">    PID TTY          TIME CMD</span><br><span class="line">  43498 pts/3    00:00:00 bash</span><br><span class="line">  43580 pts/3    00:00:00 ps</span><br></pre></td></tr></tbody></table></figure>
+
+<p>PID：程序的进程 ID</p>
+<p>TTY：运行在哪个终端</p>
+<p>TIME：占用CPU的时间</p>
+<p>查看系统中运行的所有进程，使用 -ef 选项</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ps -ef</span></span><br><span class="line">UID          PID    PPID  C STIME TTY          TIME CMD</span><br><span class="line">root           1       0  0 Aug21 ?        00:00:06 /sbin/init noibrs</span><br><span class="line">root           2       0  0 Aug21 ?        00:00:00 [kthreadd]</span><br><span class="line">root           3       2  0 Aug21 ?        00:00:00 [rcu_gp]</span><br><span class="line">root           4       2  0 Aug21 ?        00:00:00 [rcu_par_gp]</span><br><span class="line">root           5       2  0 Aug21 ?        00:00:00 [netns]</span><br><span class="line">root           7       2  0 Aug21 ?        00:00:00 [kworker/0:0H-events_highpri]</span><br><span class="line">root          10       2  0 Aug21 ?        00:00:00 [mm_percpu_wq]</span><br><span class="line">root          11       2  0 Aug21 ?        00:00:00 [rcu_tasks_rude_]</span><br><span class="line">root          12       2  0 Aug21 ?        00:00:00 [rcu_tasks_trace]</span><br><span class="line">root          13       2  0 Aug21 ?        00:00:00 [ksoftirqd/0]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>UID：启动该进程的用户</p>
+<p>PID：进程ID</p>
+<p>PPID：父进程的PID</p>
+<p>C：进程生命周期的CPU利用率</p>
+<p>STIME：进程启动时的系统时间</p>
+<p>TTY：进程时从哪个终端设备启动的</p>
+<p>TIME：运行进程的累计CPU时间</p>
+<p>CMD：启动的程序名称</p>
+<p>如果还想获得更多的信息，可以使用 -l 选项，产生长格式输出</p>
+<p>使用 -l 多出的几列为：</p>
+<p>F：内核分配给进程的系统标志</p>
+<p>S：进程的状态（O 正在运行、S 休眠、R可运行，正等待运行、Z 僵化，已终止但找不到其父进程、T 停止）</p>
+<p>PRI：进程的优先级（数字越大，优先级越低）</p>
+<p>NI：谦让度，用于决定优先级</p>
+<p>ADDR：进程的内存地址</p>
+<p>SZ：进程被换出时所需交换空间的大致大小</p>
+<p>WCHAN：进程休眠的内核函数地址</p>
+<h3 id="2-实时监测进程"><a href="#2-实时监测进程" class="headerlink" title="2. 实时监测进程"></a>2. 实时监测进程</h3><p>使用 top 指令</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">top - 23:31:40 up 3 days,  7:37,  5 users,  load average: 0.00, 0.01, 0.00</span><br><span class="line">Tasks: 134 total,   1 running, 133 sleeping,   0 stopped,   0 zombie</span><br><span class="line"><span class="meta prompt_">%</span><span class="language-bash">Cpu(s):  0.3 us,  0.2 sy,  0.0 ni, 99.5 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span></span><br><span class="line">MiB Mem :   3590.5 total,   2029.5 free,    296.7 used,   1264.3 buff/cache</span><br><span class="line">MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3048.1 avail Mem </span><br></pre></td></tr></tbody></table></figure>
+
+<p>第一行：当前时间、系统的运行时长、登录的用户数、系统的平均负载（1分钟5分钟15分钟内的）</p>
+<p>第二行：显示进程概况，多少进程处于运行、休眠、停止以及僵化状态</p>
+<p>第三行：CPU 概况</p>
+<p>第四、五行：系统内存状态，第四行显示的时物理内存状态，后一行显示的是系统交换空间的状态</p>
+<p>键入 q 退出 top</p>
+<h3 id="3-结束进程"><a href="#3-结束进程" class="headerlink" title="3. 结束进程"></a>3. 结束进程</h3><p><strong>Linux进程信号</strong></p>
+<table>
+<thead>
+<tr>
+<th>信号</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>HUP</td>
+<td>挂起</td>
+</tr>
+<tr>
+<td>2</td>
+<td>INT</td>
+<td>中断</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QUIT</td>
+<td>结束运行</td>
+</tr>
+<tr>
+<td>9</td>
+<td>KILL</td>
+<td>无条件终止</td>
+</tr>
+<tr>
+<td>11</td>
+<td>SEGV</td>
+<td>段错误</td>
+</tr>
+<tr>
+<td>15</td>
+<td>TERM</td>
+<td>尽可能终止</td>
+</tr>
+<tr>
+<td>17</td>
+<td>STOP</td>
+<td>无条件停止运动，但不终止</td>
+</tr>
+<tr>
+<td>18</td>
+<td>TSTP</td>
+<td>停止或暂停，但继续在后台运行</td>
+</tr>
+<tr>
+<td>19</td>
+<td>CONT</td>
+<td>在 STOP 或TSTP 之后恢复执行</td>
+</tr>
+</tbody></table>
+<p>在Linux中有两个命令可以向运行中的进程发出进程信号：<strong>kill 和 pkill</strong></p>
+<ul>
+<li>kill 命令</li>
+</ul>
+<p>kill 命令通过PID 向进程发送信号（只能使用进程的PID而不能使用其对应的程序名）</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">kill</span> 13597</span></span><br><span class="line">-bash: kill: (13597) - Operation not permitted</span><br></pre></td></tr></tbody></table></figure>
+
+<p>默认情况下，kill 命令会向列出的所有 PID 发送 TERM 信号</p>
+<blockquote>
+<p>要发送进程信号，必须是进程的属主或root用户</p>
+</blockquote>
+<ul>
+<li>pkill 命令</li>
+</ul>
+<p>pkill 命令可以使用程序名代替PID来终止进程，同时pkill也支持使用通配符</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pkill http*</span></span><br><span class="line"><span class="meta prompt_">#</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>该命令将“杀死”所有名称以http起始的进程，比如Apahce Web Server 的 httpd 服务</p>
+<blockquote>
+<p><strong>警告：</strong>以root身份使用 pkill 命令要格外小心。命令中的通配符很容易意外地将系统重要的进程终止，这可能导致文件系统损坏！</p>
+</blockquote>
+<h3 id="4-检测磁盘空间"><a href="#4-检测磁盘空间" class="headerlink" title="4. 检测磁盘空间"></a>4. 检测磁盘空间</h3><p><strong>挂载存储设备</strong></p>
+<blockquote>
+<p>Linux 文件系统会将所有的磁盘都并入单个虚拟目录。在使用新的存储设备之前，需要将其放在虚拟目录中，这项工作称为 **挂载(mounting)**。</p>
+</blockquote>
+<ol>
+<li>mount 命令</li>
+</ol>
+<p>用于挂载存储设备。</p>
+<p>mount 命令提供了 4 部分信息</p>
+<ul>
+<li>设备文件名</li>
+<li>设备在虚拟目录中的挂载点</li>
+<li>文件系统类型</li>
+<li>已挂载设备的访问状态</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mount -t ext4</span></span><br><span class="line">/dev/vda3 on / type ext4 (rw,relatime)</span><br></pre></td></tr></tbody></table></figure>
+
+<p>要手动在虚拟目录中挂载设备，需要以root用户身份登录，或是以root用户身份登录，或是以root用户身份运行sudo命令，手动挂载设备的基本命令：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mount -t <span class="built_in">type</span> device directory</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>type ：指定了磁盘格式化所使用的文件系统类型</li>
+<li>后两个参数：指定了该存储设备的设备文件位置以及挂载点在虚拟目录中的位置</li>
+</ul>
+<p>例：手动将U盘 /dev/sdb1 挂载到 /media/disk </p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">mount -t vfat /dev/sdb1 /media/disk</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>umount 命令</li>
+</ol>
+<blockquote>
+<p>移除可移动设备时，不能直接将其拔下，应该先<strong>卸载</strong></p>
+</blockquote>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">umount [directory | device]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>df 命令</li>
+</ol>
+<p>df 命令可以查看所有已挂载磁盘的使用情况</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">df</span></span></span><br><span class="line">Filesystem     1K-blocks    Used Available Use% Mounted on</span><br><span class="line">tmpfs             367664    2632    365032   1% /run</span><br><span class="line">/dev/vda3       20261208 3461952  15744692  19% /</span><br><span class="line">tmpfs            1838320       0   1838320   0% /dev/shm</span><br><span class="line">tmpfs               5120       0      5120   0% /run/lock</span><br><span class="line">/dev/vda2         201615    5329    196286   3% /boot/efi</span><br><span class="line">tmpfs              51200       0     51200   0% /usr/local/aegis/cgroup</span><br><span class="line">tmpfs             367664       4    367660   1% /run/user/1000</span><br></pre></td></tr></tbody></table></figure>
+
+<p>命令输出为：</p>
+<ul>
+<li>设备文件位置</li>
+<li>包含多少已1024字节为单位的块</li>
+<li>使用了多少以1024字节为单位的块</li>
+<li>还有多少以1024字节为单位的块可用</li>
+<li>已用空间所占的百分比</li>
+<li>设备挂载点</li>
+</ul>
+<p>df 的常用命令是 -h ，以人类易读的方式显示磁盘空间，M代表兆字节，G代表吉字节</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">df</span> -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">tmpfs           360M  2.6M  357M   1% /run</span><br><span class="line">/dev/vda3        20G  3.4G   16G  19% /</span><br><span class="line">tmpfs           1.8G     0  1.8G   0% /dev/shm</span><br><span class="line">tmpfs           5.0M     0  5.0M   0% /run/lock</span><br><span class="line">/dev/vda2       197M  5.3M  192M   3% /boot/efi</span><br><span class="line">tmpfs            50M     0   50M   0% /usr/local/aegis/cgroup</span><br><span class="line">tmpfs           360M  4.0K  360M   1% /run/user/1000</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>du 命令</li>
+</ol>
+<p>du 命令可以显示特定目录的磁盘使用情况</p>
+<p>选项：</p>
+<ul>
+<li>-c 显示所有已列出文件的总大小</li>
+<li>-h 按人类易读格式输出</li>
+<li>-s 输出每个参数的汇总信息</li>
+</ul>
+<h3 id="5-处理数据文件"><a href="#5-处理数据文件" class="headerlink" title="5.处理数据文件"></a>5.处理数据文件</h3><p><strong>数据排序</strong></p>
+<p>sort 用来对数据进行排序的命令</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> doc</span> </span><br><span class="line">abc</span><br><span class="line">bcd</span><br><span class="line">bss</span><br><span class="line">acc</span><br><span class="line">hanshijun@hanshijun:~/newdir$ sort doc </span><br><span class="line">abc</span><br><span class="line">acc</span><br><span class="line">bcd</span><br><span class="line">bss</span><br></pre></td></tr></tbody></table></figure>
+
+<p>按数值排列，加 -n 选项</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> doc</span> </span><br><span class="line">12</span><br><span class="line">48</span><br><span class="line">6</span><br><span class="line">20</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sort</span> doc</span> </span><br><span class="line">12</span><br><span class="line">20</span><br><span class="line">48</span><br><span class="line">6</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sort</span> -n doc</span> </span><br><span class="line">6</span><br><span class="line">12</span><br><span class="line">20</span><br><span class="line">48</span><br></pre></td></tr></tbody></table></figure>
+
+<p>另一个常用的选项是 -M ，该选项可以将数字按月排序</p>
+<p>sort命令选项</p>
+<table>
+<thead>
+<tr>
+<th>短选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-b</td>
+<td>排序时忽略起始的空白字符</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>不排序，如果数据无序也不要报告</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>不排序，但检查输入数据是否有序，无序就报告</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>仅考虑空白字符和字母数字字符，不考虑特殊字符</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>大写字母默认先出现，该选项会忽略大小写</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>使用一般数值进行排序</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>在排序时忽略不可打印字符</td>
+</tr>
+<tr>
+<td>-k</td>
+<td>排序键从POS1位置开始，到POS2位置结束</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>用三字符的月份名按月份排序</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>合并两个已排序数据文件</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>将字符串按字符按数值意义排序</td>
+</tr>
+<tr>
+<td>-o</td>
+<td>将排序结果写入指定文件</td>
+</tr>
+<tr>
+<td>-R</td>
+<td>根据随机哈希排序</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>逆序排序（升序变降序）</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>指定使用的内存大小</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>禁止 last-resort 比较，实现稳定排序</td>
+</tr>
+<tr>
+<td>-T</td>
+<td>指定用于保存临时工作文件的目录</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>指定字段分隔符</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>和 -c 选项合用时，检查严格排序，不和用，则相同行仅输出一次</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>在行尾使用NULL字符代替换行符</td>
+</tr>
+</tbody></table>
+<p>-n 选项适合用于排序数值型输出，比如 du 命令的输出，-r 选项对数值按照降序排列，这样可以快速看出目录中哪些文件占用磁盘空间最多</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">du</span> -sh * | <span class="built_in">sort</span> -nr</span></span><br><span class="line">132K	work</span><br><span class="line">52K	hanshijun</span><br></pre></td></tr></tbody></table></figure>
+
+<p>对按字段分隔的数据（例如 /etc/passwd 文件）进行排序，可以使用 -k 和 -t 选项</p>
+<p>先使用 -t 指定字段分隔符，然后再使用 -k 指定排序字段</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">sort</span> -t <span class="string">':'</span> -k 3 -n etc/passwd</span></span><br><span class="line">root:x:0:0:root:/root:/bin/bash</span><br><span class="line">daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin</span><br><span class="line">bin:x:2:2:bin:/bin:/usr/sbin/nologin</span><br><span class="line">sys:x:3:3:sys:/dev:/usr/sbin/nologin</span><br><span class="line">sync:x:4:65534:sync:/bin:/bin/sync</span><br><span class="line">games:x:5:60:games:/usr/games:/usr/sbin/nologin</span><br><span class="line">man:x:6:12:man:/var/cache/man:/usr/sbin/nologin</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>数据搜索</strong></p>
+<p>grep 命令会在输入或指定文件中逐行搜索匹配指定模式的文本</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">grep [options] pattern [file]</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cat</span> text</span> </span><br><span class="line">adc</span><br><span class="line">add</span><br><span class="line">one</span><br><span class="line">two</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep one text</span> </span><br><span class="line">one</span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep a text</span> </span><br><span class="line">adc</span><br><span class="line">add</span><br></pre></td></tr></tbody></table></figure>
+
+<p>反向搜索（输出不匹配指定模式的行），可以使用 -v 选项</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep -v a text</span> </span><br><span class="line">one</span><br><span class="line">two</span><br></pre></td></tr></tbody></table></figure>
+
+<p>显示匹配指定模式的那些行的行号，使用 -n 选项</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep -n a text</span> </span><br><span class="line">1:adc</span><br><span class="line">2:add</span><br></pre></td></tr></tbody></table></figure>
+
+<p>只想知道有多少行含有匹配的模式，使用 -c 选项</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep -c a text</span> </span><br><span class="line">2</span><br></pre></td></tr></tbody></table></figure>
+
+<p>指定多个匹配模式，可以使用 -e 选项来逐个指定</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">grep -e t  -e c text</span> </span><br><span class="line">adc</span><br><span class="line">two</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>数据压缩</strong></p>
+<p>Linux文件压缩工具</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>文件拓展名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bzip2</td>
+<td>.bz2</td>
+<td>采用Burrows-Wheeler 块排序文本压缩算法和霍夫曼编码</td>
+</tr>
+<tr>
+<td>compress</td>
+<td>.Z</td>
+<td>最初的Unix文件压缩工具，已经快要无人使用了</td>
+</tr>
+<tr>
+<td>gzip</td>
+<td>.gz</td>
+<td>GUN压缩工具，用Lempel-Zivwelch 编码</td>
+</tr>
+<tr>
+<td>xz</td>
+<td>.xz</td>
+<td>日渐流行的通用压缩工具</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>.zip</td>
+<td>windows中PKZIP工具的Unix实现</td>
+</tr>
+</tbody></table>
+<p>gzip 软件包是GUN项目的产物，旨在编写一个能够替代原先Unix中compress工具的免费版本</p>
+<p>软件包包括：</p>
+<ul>
+<li>gzip：用于压缩文件</li>
+<li>gzcat：用于查看压缩过的文本文件的内容</li>
+<li>gunzip：用于解压文件</li>
+</ul>
+<p><strong>数据归档</strong></p>
+<p>Linux和Unix中的标准归档工具是 tar 命令</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">tar function [options] object1 object2 ...</span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中，function 定义了 tar 命令要执行的操作，如下表</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>长选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-A</td>
+<td>–concatenate</td>
+<td>将一个tar归档文件追加到另一个tar归档文件末尾</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>–create</td>
+<td>创建新的 tar 归档文件</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>–diff</td>
+<td>检查归档文件中删除的文件</td>
+</tr>
+<tr>
+<td></td>
+<td>–delete</td>
+<td>从 tar 归档文件中删除文件</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>–append</td>
+<td>将文件追加到 tar 归档文件末尾</td>
+</tr>
+<tr>
+<td>-t</td>
+<td>–list</td>
+<td>列出 tar 归档文件的内容</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>–update</td>
+<td>将比 tar 归档文件中已有的同名文件更新的文件追加到该归档文件</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>–extract</td>
+<td>从 tar 归档文件中提取文件</td>
+</tr>
+</tbody></table>
+<p>每种操作都使用 option （选项）来定义针对 tar 归档文件的具体行为，下表列出常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-C dir</td>
+<td>切换到指定目录</td>
+</tr>
+<tr>
+<td>-f file</td>
+<td>将结果输出到文件（或设备）</td>
+</tr>
+<tr>
+<td>-j</td>
+<td>将输出传给 bzip2 命令进行压缩</td>
+</tr>
+<tr>
+<td>-J</td>
+<td>将输出传给 xz 命令进行压缩</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>保留文件的所有权限</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>在处理文件时显示文件名</td>
+</tr>
+<tr>
+<td>-z</td>
+<td>将输出传给 gzip 命令进行压缩</td>
+</tr>
+<tr>
+<td>-Z</td>
+<td>将输出传给 compress 命令进行压缩</td>
+</tr>
+</tbody></table>
+<ol>
+<li>打包文件</li>
+</ol>
+<p>将file1，file2，file3 打包成 file.tar</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">tar -cvf file.tar file1 file2 file3</span><br></pre></td></tr></tbody></table></figure>
+
+<p>-c：打包模式	</p>
+<p>-f：指定将要创建的打包结果存放文件</p>
+<ol start="2">
+<li>解包文件</li>
+</ol>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">tar -xvf file.tar</span><br></pre></td></tr></tbody></table></figure>
+
+<p>-x：解包模式</p>
+<p>-f：指定 tar 包文件</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+        <category>shell</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>shell</tag>
+      </tags>
+  </entry>
 </search>
